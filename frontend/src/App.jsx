@@ -4,7 +4,10 @@ import {
   createRoutesFromElements,
   RouterProvider,
 } from "react-router-dom";
+
+//layouts
 import RootLayout from "./layouts/RootLayout";
+//pages
 import Home from "../src/pages/Home";
 import Results from "../src/pages/Results";
 import DataVisual from '../src/pages/DataVisual';
