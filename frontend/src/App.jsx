@@ -11,6 +11,7 @@ import RootLayout from "./layouts/RootLayout";
 import Home from "../src/pages/Home";
 import Results from "../src/pages/Results";
 import DataVisual from '../src/pages/DataVisual';
+import Login from "./layouts/Login";
 
 
 
@@ -25,6 +26,8 @@ function App() {
           <Route element={<Results/>} path="/route"></Route>
           <Route element={<DataVisual/>} path="/"></Route>
         </Route>
+        <Route element={<Login/>} path="/login" ></Route>
+        <Route element ={<Results/>} path="/results" ></Route>
       
       </>
 
