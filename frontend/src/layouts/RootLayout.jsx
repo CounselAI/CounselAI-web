@@ -6,9 +6,11 @@ import styles from './RootLayout.module.css';
 export default function RootLayout( ) {
   return (
     <>
-      <Box className={styles.background}>
+      <Box className={styles.background} padding={"2em"}>
         <Header />
+        <Box margin={"20em 5em 5em 5em"}>
         <Outlet />
+        </Box>
       </Box>
     </>
   );
