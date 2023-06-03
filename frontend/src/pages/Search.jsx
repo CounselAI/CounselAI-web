@@ -17,7 +17,18 @@ export default function Search() {
 
   function handleClick(id){
     console.log(id)
-    setList(prevstate =>[...prevstate,id])
+    if(list.includes(id)){
+      setList(list.filter((item)=>{
+          item !==id
+      }))
+
+    }
+    else
+    {
+      setList(prevstate =>[...prevstate,id])
+
+
+    }
     console.log(list)
   }
 
@@ -39,6 +50,10 @@ export default function Search() {
     <ResultList handleClick={handleClick} setList={setList}/>
     </Center>
     </Box>
+    <Spacer height={"3em"}/>
+    
+    <Center><Button onClick={handleCompile} variant={"custom"}>Compile</Button></Center>
+    <Spacer height={"3em"}/>
     
     </>
   )

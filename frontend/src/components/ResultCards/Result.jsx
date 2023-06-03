@@ -9,6 +9,8 @@ import {
   Center,
 } from "@chakra-ui/react";
 
+import { useState } from "react";
+
 export default function Result({
   title = "yolo",
   id = 1,
@@ -22,15 +24,30 @@ export default function Result({
 
 {
 
+  const [isClicked,setisClicked]=useState(false);
+  const [color,setColor] = useState("#fcdc25")
+
   function click(){
     console.log(id)
     handleClick(id)
+    if(isClicked==false){
+      setColor("green")
+      setisClicked(true)
+
+    }
+    else
+    {
+      setColor("#fcdc25")
+      
+      setisClicked(false)
+    }
+    
 
   }
 
   return (
     <>
-      <Card  onClick={click}  padding={"0 2em"} color={"#FFDC25"} border={"2px solid #FFDC25"} fontWeight={"medium"} _hover={{boxShadow:"lg"}} backgroundColor={"#000000"} id = {id} >
+      <Card  onClick={click}  padding={"0 2em"} color={"#FFDC25"} border={`2px solid ${color}`} fontWeight={"medium"} _hover={{boxShadow:"lg"}} backgroundColor={"#000000"} id = {id} >
         <CardHeader padding={" 1em 2em"}>
           <Text>Case ID:{id}</Text>
 
