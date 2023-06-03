@@ -110,6 +110,16 @@ export default function Login() {
                 <Input type="email" ref={emailRef} />
                 <FormHelperText color={"white"}>We' ll never share your email.</FormHelperText>
               </FormControl>
+              <Box color={"black"}><Button
+                  type="submit"
+                  
+                  variant={"custom"}
+                  marginBottom={"20px"}
+                  onClick={handleSubmit}
+                  isLoading={isLoading}
+                >
+                  Submit Email
+                </Button></Box>
               <FormControl isRequired  display={!show}>
                 <FormLabel>Enter the OTP</FormLabel>
                 <Input type="text" ref={otpRef} />
@@ -118,19 +128,10 @@ export default function Login() {
               <FormErrorMessage>{}</FormErrorMessage>
               <Box>
               <Box color={"black"}>
-                <Button
-                  type="submit"
-                  display={kill}
-                  variant={"custom"}
-                  marginBottom={"20px"}
-                  onClick={handleSubmit}
-                  isLoading={isLoading}
-                >
-                  Submit Email
-                </Button>
+               
 
                 <Button
-                  display={show}
+
                   type="submit"
                   variant={"custom"}
                   marginBottom={"20px"}

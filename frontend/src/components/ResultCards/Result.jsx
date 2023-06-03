@@ -47,7 +47,7 @@ export default function Result({
 
   return (
     <>
-      <Card  onClick={click}  padding={"0 2em"} color={"#FFDC25"} border={`2px solid ${color}`} fontWeight={"medium"} _hover={{boxShadow:"lg"}} backgroundColor={"#000000"} id = {id} >
+      <Card  onClick={click}  padding={"0 2em"} color={"white"} border={`2px solid ${color}`} fontWeight={"medium"} _hover={{boxShadow:"lg"}} backgroundColor={"#000000"} id = {id} margin={"2em 0"}>
         <CardHeader padding={" 1em 2em"}>
           <Text>Case ID:{id}</Text>
 

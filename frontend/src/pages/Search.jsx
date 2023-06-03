@@ -20,6 +20,7 @@ export default function Search() {
   const [list,setList]=useState([]);
   const [result,setResult]=useState([])
   const {abstract,setAbstract} = useAuth()
+  const [isLoading,setisLoading] = useState(false)
 
   function handleQuery(){
     const token = getToken()
@@ -63,13 +64,14 @@ export default function Search() {
 
   function handleCompile(){
 
+    setisLoading(true)
     const url = "http://127.0.0.1:8000/cases/compile/nlp";
     let data = { "ids": list }
     console.log(JSON.stringify(data))
     const res = fetch(url,{method: "POST",mode:'cors', headers: {"Content-Type": "application/json","Accept-Encoding":"gzip, deflate, br"},
     body: JSON.stringify(data)})
     .then((res)=>{
-     
+      setisLoading(false)
        return res.json(); 
     })
       .then((res => {
@@ -80,6 +82,7 @@ export default function Search() {
       }))
     .catch((e)=>{
       console.log(e)
+      setisLoading(false);
     })
 
   
@@ -99,12 +102,12 @@ export default function Search() {
     <Spacer height={"3em"}/>
     
     <Center justifyContent={"center"} alignItems={"center"}>
-    <ResultList handleClick={handleClick} setList={setList} data={result} />
+    <ResultList  isLoading={isLoading} handleClick={handleClick} setList={setList} data={result} />
     </Center>
     </Box>
     <Spacer height={"3em"}/>
     
-    <Center><Button onClick={handleCompile} variant={"custom"}>Compile</Button></Center>
+    <Center><Button onClick={handleCompile} isLoading={isLoading} variant={"custom"}>Compile</Button></Center>
     <Spacer height={"3em"}/>
     
     </>
