@@ -12,6 +12,17 @@ export default function Search() {
 
   function handleQuery(){
     console.log(queryRef.current.value)
+    const url = "httpsz://127.0.0.1:8000/cases/query";
+    let data = {query:queryRef.current.value}
+    const res = fetch(url,{method: "POST", headers: {"Content-Type": "application/json",},
+    body: JSON.stringify(data)})
+    .then((res)=>{
+      console.log(res)
+      return res.json();
+    })
+    .catch((e)=>{
+      console.log(e)
+    })
 
   }
 
