@@ -7,6 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 export default function Search() {
 
+
+
+  function getToken(){
+    const data = (localStorage.getItem('userData'));
+    const token = JSON.parse(data).data.access_token
+    return token;
+  }
+
   const navigate = useNavigate();
   const queryRef = useRef(null);
   const [list,setList]=useState([]);
@@ -14,19 +22,21 @@ export default function Search() {
   const {abstract,setAbstract} = useAuth()
 
   function handleQuery(){
+    const token = getToken()
+    console.log(token)
     console.log(queryRef.current.value)
-    const url = "http://127.0.0.1:8000/cases/query";
+    const url = "http://localhost:8080/v1/ai/query";
     let data = { "query": queryRef.current.value }
     console.log(JSON.stringify(data))
-    const res = fetch(url,{method: "POST",mode:'cors', headers: {"Content-Type": "application/json","Accept-Encoding":"gzip, deflate, br"},
+    const res = fetch(url,{method: "POST",mode:'cors', headers: {"Content-Type": "application/json",Authorization:token},
     body: JSON.stringify(data)})
     .then((res)=>{
      
        return res.json(); 
     })
       .then((res => {
-        console.log(res.data)
-        setResult(res.data.slice(0,10))
+        console.log(typeof res.data.data)
+        setResult(res.data.data.slice(0,10))
       }))
     .catch((e)=>{
       console.log(e)
@@ -76,6 +86,7 @@ export default function Search() {
 
 
   }
+
 
 
   return (

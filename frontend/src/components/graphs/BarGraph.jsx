@@ -101,6 +101,11 @@ const crimeRateData = {
         legend: {
           position: "right",
         },
+        title:{
+            display:true,
+            text:'No of Crimes based on year',
+            font:{size:16},
+        }
       },
       responsive: true,
       maintainAspectRatio: false,
