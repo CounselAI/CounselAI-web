@@ -11,9 +11,21 @@ export default function ResultList({data,handleClick}) {
    <>
         <Box width={"100%"} backgroundColor={"#282828"} >
 
-
           
-            <Result key={1} id={1} handleClick={handleClick} /> 
+
+          {data.map((item)=>{
+            return  <Result key={item.Id} title = {item.Name}
+            id = {item.Id}
+            term = {item.Term}
+            prosecutor = {item.First_party}
+            defendent ={item.Second_party}
+            facts = {item.Facts}
+            issuearea = {item.Issue_area} 
+            handleClick={handleClick}/> 
+
+          })}
+          
+            
             
           
           

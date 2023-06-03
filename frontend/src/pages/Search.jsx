@@ -2,13 +2,16 @@ import React from 'react'
 import SearchArea from '../components/SearchArea/SearchArea'
 import { Spacer,Container ,Center,Box,Button} from '@chakra-ui/react'
 import ResultList from '../components/ResultCards/ResultList'
-import { useRef,useState } from 'react';
-
-
+import { useRef,useState,useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext';
 export default function Search() {
 
+  const navigate = useNavigate();
   const queryRef = useRef(null);
   const [list,setList]=useState([]);
+  const [result,setResult]=useState([])
+  const {abstract,setAbstract} = useAuth()
 
   function handleQuery(){
     console.log(queryRef.current.value)
@@ -22,7 +25,8 @@ export default function Search() {
        return res.json(); 
     })
       .then((res => {
-        console.log(res)
+        console.log(res.data)
+        setResult(res.data.slice(0,10))
       }))
     .catch((e)=>{
       console.log(e)
@@ -49,6 +53,28 @@ export default function Search() {
 
   function handleCompile(){
 
+    const url = "http://127.0.0.1:8000/cases/compile/nlp";
+    let data = { "ids": list }
+    console.log(JSON.stringify(data))
+    const res = fetch(url,{method: "POST",mode:'cors', headers: {"Content-Type": "application/json","Accept-Encoding":"gzip, deflate, br"},
+    body: JSON.stringify(data)})
+    .then((res)=>{
+     
+       return res.json(); 
+    })
+      .then((res => {
+        navigate("/visual")
+        console.log(res.data)
+        setAbstract(res.data)
+        
+      }))
+    .catch((e)=>{
+      console.log(e)
+    })
+
+  
+
+
   }
 
 
@@ -62,7 +88,7 @@ export default function Search() {
     <Spacer height={"3em"}/>
     
     <Center justifyContent={"center"} alignItems={"center"}>
-    <ResultList handleClick={handleClick} setList={setList}/>
+    <ResultList handleClick={handleClick} setList={setList} data={result} />
     </Center>
     </Box>
     <Spacer height={"3em"}/>

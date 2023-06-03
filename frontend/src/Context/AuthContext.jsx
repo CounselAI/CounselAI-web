@@ -11,8 +11,8 @@ export function useAuth(){
 
 export function AuthProvider({ children }) {
   const [userpid, setuserpid] = useState();
-
-  const value = { userpid, setuserpid };
+  const [abstract,setAbstract] = useState("")
+  const value = { userpid, setuserpid ,abstract,setAbstract};
   return (
     <>
       <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

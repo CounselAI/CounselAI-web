@@ -58,7 +58,7 @@ export default function Result({
         </CardHeader>
 
         <CardBody paddingLeft={"3em"}>
-          <Text>About:</Text><Text fontWeight={"medium"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum ex molestias recusandae veritatis sunt corrupti eveniet quaerat beatae numquam itaque, doloribus minus consequatur corporis ad neque expedita earum nostrum suscipit.</Text>
+          <Text>About:</Text><Text fontWeight={"medium"}>{facts}</Text>
         </CardBody>
         <CardFooter>Issue Area: {issuearea}</CardFooter>
       </Card>
