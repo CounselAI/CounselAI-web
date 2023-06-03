@@ -5,40 +5,42 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+//context
+import { AuthProvider } from "./Context/AuthContext";
+
 //layouts
 import RootLayout from "./layouts/RootLayout";
+import SearchLayout from "./layouts/SearchLayout";
+
 //pages
 import Home from "../src/pages/Home";
-import Results from "../src/pages/Results";
-import DataVisual from '../src/pages/DataVisual';
-import Login from "./layouts/Login";
-
-
+import Search from "./pages/Search";
+import DataVisual from "../src/pages/DataVisual";
+import Login from "./layouts/LoginLayout";
 
 function App() {
-
   const router = createBrowserRouter(
     createRoutesFromElements(
-
       <>
-        <Route element={<RootLayout/>}> 
-          <Route element={<Home/>} path="/"></Route>
-          <Route element={<Results/>} path="/route"></Route>
-          <Route element={<DataVisual/>} path="/"></Route>
+        <Route element={<RootLayout />}>
+          <Route element={<Home />} path="/"></Route>
+          <Route element={<DataVisual />} path="/"></Route>
         </Route>
-        <Route element={<Login/>} path="/login" ></Route>
-        <Route element ={<Results/>} path="/results" ></Route>
-      
+        <Route element={<Login />} path="/login"></Route>
+        <Route element={<SearchLayout />}>
+          <Route element={<Search />} path="/search"></Route>
+        </Route>
       </>
-
     )
-  )
+  );
 
-
-  return <>
-  
-        <RouterProvider router = {router}></RouterProvider>
-  </>;
+  return (
+    <>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
+    </>
+  );
 }
 
 export default App;

@@ -13,8 +13,14 @@ const theme = extendTheme({
             body: {
                 fontFamily:'Open Sans',
                 fontWeight:'800',
-                letterSpacing:"2px"
+                letterSpacing:"2px",
+                bg:"#000000"
 
+            },
+            'input:focus':{
+                borderColor:'#FFDC25',
+                boxShadow:"outline",
+                
             }
         }
     }

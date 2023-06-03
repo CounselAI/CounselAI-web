@@ -1,7 +1,7 @@
 import { Heading,Button,Box } from '@chakra-ui/react'
 import React from 'react'
 
-export default function Cta() {
+export default function Cta({handleClick}) {
   return (
     <>
     
@@ -10,7 +10,7 @@ export default function Cta() {
         Insights!
     </Heading>
     <Box>
-    <Button boxShadow={"md"} variant={"custom"} size={"lg"} fontSize={"24px"}>Get Started</Button>
+    <Button boxShadow={"md"} variant={"custom"} size={"lg"} fontSize={"24px"} onClick={handleClick}>Get Started</Button>
     </Box>
     </>
   )

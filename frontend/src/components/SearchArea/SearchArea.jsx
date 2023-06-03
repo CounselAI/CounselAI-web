@@ -1,13 +1,14 @@
 import React from "react";
-
-export default function SearchArea() {
+import { Container ,Center} from "@chakra-ui/react";
+import SearchBar from "./SearchBar";
+export default function SearchArea({handleQuery,queryRef}) {
   return (
     <>
-      <Container maxW={"100%"} margin={"20em 0 5em 0"}>
-        <Center flexDir={"column"} gap={"4em"}>
-          <SearchBar />
+      
+        <Center flexDir={"column"} gap={"4em"} width={"100%"}>
+          <SearchBar handleQuery={handleQuery} queryRef={queryRef}/>
         </Center>
-      </Container>
+     
     </>
   );
 }
